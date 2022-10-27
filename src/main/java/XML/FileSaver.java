@@ -1,7 +1,6 @@
 package XML;
 
-import java.io.BufferedInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.net.URL;
 
 public class FileSaver {
