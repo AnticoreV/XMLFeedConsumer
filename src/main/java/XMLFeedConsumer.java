@@ -9,8 +9,8 @@ public class XMLFeedConsumer {
         URLReader urlReader = new URLReader(configPath);
         String url = urlReader.getUrl();
 
-        FileSaver fileSaver = new FileSaver(outputPath);
-        fileSaver.download(url);
+//        FileSaver fileSaver = new FileSaver(outputPath);
+//        fileSaver.download(url);
 
         XMLParser xmlParser = new XMLParser();
         xmlParser.parse(outputPath);

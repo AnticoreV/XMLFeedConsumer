@@ -1,6 +1,5 @@
 package XML;
 
-import javax.xml.namespace.QName;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
@@ -21,14 +20,24 @@ public class XMLParser {
                 //Get integer value of current event.
                 int xmlEvent = xmlStreamReader.next();
 
-                //Process start element.
-                if (xmlEvent == XMLStreamConstants.START_ELEMENT) {
-                    System.out.println("Start Element: "
-                            + xmlStreamReader.getLocalName());
-                }
-                if (xmlEvent == XMLStreamConstants.END_ELEMENT) {
-                    System.out.println("End Element: "
-                            +xmlStreamReader.getLocalName());
+                switch (xmlEvent){
+                    case XMLStreamConstants.START_ELEMENT -> {
+                        System.out.println("Start Element: " + xmlStreamReader.getLocalName());
+                        break;
+                    }
+                    case XMLStreamConstants.CHARACTERS -> {
+                        System.out.println("Content: " + xmlStreamReader.getText());
+                        break;
+                    }
+                    case XMLStreamConstants.ATTRIBUTE -> {
+                        System.out.println("Attribute: " + xmlStreamReader.getAttributeValue(xmlEvent));
+                        break;
+                    }
+                    case XMLStreamConstants.END_ELEMENT -> {
+                        System.out.println("Last Element: " + xmlStreamReader.getLocalName());
+                        break;
+                    }
+                    default -> System.out.println("Default");
                 }
             }
         } catch (XMLStreamException e) {
