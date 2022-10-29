@@ -18,4 +18,32 @@ public class Content implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "el_id")
     private Element element;
+
+
+    public Content() {
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getAttribute() {
+        return attribute;
+    }
+
+    public void setAttribute(String attribute) {
+        this.attribute = attribute;
+    }
+
+    public Element getElement() {
+        return element;
+    }
+
+    public void setElement(Element element) {
+        this.element = element;
+    }
 }
