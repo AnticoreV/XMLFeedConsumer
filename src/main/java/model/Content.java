@@ -9,14 +9,14 @@ import java.io.Serializable;
 public class Content implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_el;
+    private int id;
 
     private String content;
 
     private String attribute;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "el_id")
+    @JoinColumn(name = "id")
     private Element element;
 
 

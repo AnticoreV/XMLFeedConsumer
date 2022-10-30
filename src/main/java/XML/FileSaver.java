@@ -6,10 +6,12 @@ import java.net.URL;
 public class FileSaver {
     private String path;
 
+    //save downloaded file on path
     public FileSaver(String path) {
         this.path = path;
     }
 
+    //download file from url
     public void download(String url){
         try{
             BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());

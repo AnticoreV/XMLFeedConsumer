@@ -13,4 +13,11 @@ public class XMLDaoImpl implements XMLDao{
         tx1.commit();
         session.close();
     }
+    public void update(Element element) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx1 = session.beginTransaction();
+        session.update(element);
+        tx1.commit();
+        session.close();
+    }
 }
