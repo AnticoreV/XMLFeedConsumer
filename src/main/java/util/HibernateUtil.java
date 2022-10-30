@@ -1,6 +1,5 @@
 package util;
 
-import XML.INIReader;
 import model.Content;
 import model.Element;
 import org.hibernate.SessionFactory;
@@ -17,19 +16,14 @@ public class HibernateUtil {
 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
-            INIReader iniReader = INIReader.getINIReader();
-            System.out.println(iniReader.getIniData().get(3) + "TEST");
-            String a = iniReader.getIniData().get(3);
-            System.out.println(a.length());
-
             try {
                 Configuration cnfg = new Configuration();
                 Properties prop = new Properties();
-                prop.put(Environment.DRIVER, iniReader.getIniData().get(3));
-                prop.put(Environment.URL, "jdbc:mysql://localhost:3306/xml");
-                prop.put(Environment.USER, "root");
-                prop.put(Environment.PASS, "H78f6bf6ddes3dr9245");
-                prop.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
+                prop.put(Environment.DRIVER, JDBCConnectionPropereties.driver);
+                prop.put(Environment.URL, JDBCConnectionPropereties.url);
+                prop.put(Environment.USER, JDBCConnectionPropereties.user);
+                prop.put(Environment.PASS, JDBCConnectionPropereties.pass);
+                prop.put(Environment.DIALECT, JDBCConnectionPropereties.dial);
                 cnfg.setProperties(prop);
                 cnfg.addAnnotatedClass(Element.class);
                 cnfg.addAnnotatedClass(Content.class);

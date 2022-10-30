@@ -13,14 +13,14 @@ public class XMLFeedConsumer {
         iniReader.setPath(configPath);
 
 
-        ElementService elementService = new ElementService();
-        Element element = new Element();
-        element.setFirst_el("GGG");
-        element.setSecond_el("TTT");
-        elementService.save(element);
-        Content content = new Content();
-        content.setContent("hjreih");
-        element.setContent(content);
-        elementService.update(element);
+//        ElementService elementService = new ElementService();
+//        Element element = new Element();
+//        element.setFirst_el("GGG");
+//        element.setSecond_el("TTT");
+//        elementService.save(element);
+//        Content content = new Content();
+//        content.setContent("hjreih");
+//        element.setContent(content);
+//        elementService.update(element);
     }
 }

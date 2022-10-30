@@ -36,12 +36,15 @@ public class INIReader {
             do{
                 data.get(iter).append((char)c);
                 if(c==10){
-                    list_data.add(data.get(iter).toString());
+                    list_data.add(data.get(iter)
+                            .substring(0, data.get(iter).length() - 1));
                     iter++;
                     data.add(new StringBuilder());
                 }
             }while ((c=reader.read())!=-1);
-            list_data.add(data.get(iter).toString());
+            //last element adding
+            list_data.add(data.get(iter)
+                    .toString());
         } catch(IOException e){
             System.out.println(e.getMessage());
         }
