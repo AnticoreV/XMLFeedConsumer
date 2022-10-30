@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
 
-public class XMLParser {
+public class StAXParser {
     public void parse(String path) {
         try {
             Reader fileReader = new FileReader(path);
