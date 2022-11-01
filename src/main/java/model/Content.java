@@ -15,11 +15,6 @@ public class Content implements Serializable {
 
     private String attribute;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    private Element element;
-
-
     public Content() {
     }
 
@@ -37,13 +32,5 @@ public class Content implements Serializable {
 
     public void setAttribute(String attribute) {
         this.attribute = attribute;
-    }
-
-    public Element getElement() {
-        return element;
-    }
-
-    public void setElement(Element element) {
-        this.element = element;
     }
 }

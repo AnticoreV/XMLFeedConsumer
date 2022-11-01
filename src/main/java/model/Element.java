@@ -14,10 +14,6 @@ public class Element implements Serializable {
 
     private String second_el;
 
-    @OneToOne(mappedBy = "element",cascade = CascadeType.ALL, orphanRemoval = true)
-    private Content content;
-
-
     public Element() {
     }
 
@@ -35,13 +31,5 @@ public class Element implements Serializable {
 
     public void setSecond_el(String second_el) {
         this.second_el = second_el;
-    }
-
-    public Content getContent() {
-        return content;
-    }
-
-    public void setContent(Content content) {
-        this.content = content;
     }
 }

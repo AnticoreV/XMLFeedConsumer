@@ -1,26 +1,19 @@
 import XML.INIReader;
-import model.Content;
-import model.Element;
-import service.ElementService;
-
+import XML.StAXParser;
 
 
 public class XMLFeedConsumer {
     public static void main(String[] args) {
+        //output path is for file_saver to download file and save it to output path as xml file
         String outputPath = "/Users/ivansapronov/Desktop/XMLFeedConsumer/src/main/resources/output.xml";
+
         String configPath = args[0];
         INIReader iniReader = INIReader.getINIReader();
         iniReader.setPath(configPath);
 
+        StAXParser stAXParser = new StAXParser();
+        stAXParser.parse(outputPath);
 
-//        ElementService elementService = new ElementService();
-//        Element element = new Element();
-//        element.setFirst_el("GGG");
-//        element.setSecond_el("TTT");
-//        elementService.save(element);
-//        Content content = new Content();
-//        content.setContent("hjreih");
-//        element.setContent(content);
-//        elementService.update(element);
+
     }
 }

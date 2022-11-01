@@ -1,5 +1,6 @@
 package dao;
 
+import model.Content;
 import model.Element;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,6 +18,19 @@ public class XMLDaoImpl implements XMLDao{
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(element);
+        tx1.commit();
+        session.close();
+    }
+    public void save(Content content){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx1 = session.beginTransaction();
+        session.save(content);
+        tx1.commit();
+        session.close();}
+    public void update(Content content) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx1 = session.beginTransaction();
+        session.update(content);
         tx1.commit();
         session.close();
     }
