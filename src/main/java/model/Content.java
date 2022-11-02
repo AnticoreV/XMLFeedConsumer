@@ -14,8 +14,6 @@ public class Content implements Serializable {
 
     private String content;
 
-    private String attribute;
-
     public Content() {
     }
 
@@ -27,13 +25,6 @@ public class Content implements Serializable {
         this.content = content;
     }
 
-    public String getAttribute() {
-        return attribute;
-    }
-
-    public void setAttribute(String attribute) {
-        this.attribute = attribute;
-    }
     @Override
     public boolean equals(Object obj) {
         if(this==obj){return true;}
