@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class Content implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_el")
     private int id;
 
     private String content;
@@ -32,5 +33,12 @@ public class Content implements Serializable {
 
     public void setAttribute(String attribute) {
         this.attribute = attribute;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if(this==obj){return true;}
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+        Content content = (Content) obj;
+        return content.getContent() == this.content;
     }
 }

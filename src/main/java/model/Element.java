@@ -32,4 +32,13 @@ public class Element implements Serializable {
     public void setSecond_el(String second_el) {
         this.second_el = second_el;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this==obj){return true;}
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+        Element element = (Element) obj;
+        return element.getFirst_el() == this.first_el
+                || element.getSecond_el() == this.second_el;
+    }
 }

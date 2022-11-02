@@ -4,7 +4,10 @@ import model.Content;
 import model.Element;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import util.HibernateUtil;
+
+import java.util.List;
 
 public class XMLDaoImpl implements XMLDao{
     public void save(Element element) {
@@ -33,5 +36,21 @@ public class XMLDaoImpl implements XMLDao{
         session.update(content);
         tx1.commit();
         session.close();
+    }
+    public Element getElementBy(int id){
+        return HibernateUtil.getSessionFactory().openSession().get(Element.class, id);
+    }
+    public Content getContentBy(int id){
+        return HibernateUtil.getSessionFactory().openSession().get(Content.class, id);
+    }
+    public boolean isEmptyNextIndex(int id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String hql = "SELECT COUNT(id) AS Number FROM Element";
+        Query query = session.createQuery(hql);
+        List<Integer> list = query.list();
+        if(Integer.parseInt(String.valueOf(list.get(0))) > id){
+            return false;
+        }
+        return true;
     }
 }
