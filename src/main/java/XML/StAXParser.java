@@ -71,8 +71,9 @@ public class StAXParser {
                         index++;
                         log.info("New Content added: " + xmlStreamReader.getText());
                     }
+                }
 
-                } else if (xmlStreamReader.isEndElement()) {
+                else if (xmlStreamReader.isEndElement()) {
                     if(elementService.isEmptyNextIndex(index)){
                         element.setSecond_el(xmlStreamReader.getLocalName());
                         element.setFirst_el("empty");
@@ -91,9 +92,6 @@ public class StAXParser {
                         index++;
                         log.info("New End Element added: " + xmlStreamReader.getLocalName());
                     }
-                }
-                else{
-
                 }
             }
         } catch (XMLStreamException e) {
