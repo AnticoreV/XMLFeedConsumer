@@ -26,56 +26,70 @@ public class StAXParser {
             ElementService elementService = new ElementService();
             ContentService contentService = new ContentService();
             int index = 1;
-            int iter = 1;
-            int iter1 = 1;
+            int element_iter = 1;
+            int content_iter = 1;
             while (xmlStreamReader.hasNext()) {
                 Element element = new Element();
                 Content content = new Content();
                 //Get integer value of current event
                 xmlStreamReader.next();
+
                 if(xmlStreamReader.isStartElement()){
                     if(elementService.isEmptyNextIndex(index)){
-                        System.out.println("Added first el");
                         element.setFirst_el(xmlStreamReader.getLocalName());
                         element.setSecond_el("empty");
                         elementService.save(element);
                         index++;
+                        log.info("Start Element added: " + xmlStreamReader.getLocalName());
                     }
-                    else if (elementService.getElement(iter).getFirst_el().equals(xmlStreamReader.getLocalName())) {
-                        System.out.println("FIRST EQUALS " + xmlStreamReader.getLocalName());
-                        iter++;
+                    else if (elementService.getElement(element_iter).getFirst_el().equals(xmlStreamReader.getLocalName())) {
+                        log.warn("Start Element: " + xmlStreamReader.getLocalName() + " is already exists");
+                        element_iter++;
                     }
                     else{
-                        System.out.println("NEW");
+                        element.setFirst_el(xmlStreamReader.getLocalName());
+                        element.setSecond_el("empty");
+                        elementService.save(element);
+                        index++;
+                        log.info("New Start Element added: " + xmlStreamReader.getLocalName());
                     }
+
                 } else if (xmlStreamReader.hasText() && xmlStreamReader.getText().trim().length() > 1) {
                     if(contentService.isEmptyNextIndex(index)){
-                        System.out.println("Added el");
                         content.setContent(xmlStreamReader.getText());
                         contentService.save(content);
                         index++;
+                        log.info("Content added: " + xmlStreamReader.getText());
                     }
-                    else if (contentService.getContent(iter1).getContent().equals(xmlStreamReader.getText())) {
-                        System.out.println("ELE EQUALS " + xmlStreamReader.getText());
-                        iter1++;
+                    else if (contentService.getContent(content_iter).getContent().equals(xmlStreamReader.getText())) {
+                        log.warn("Content: " + xmlStreamReader.getText() + " is already exists");
+                        content_iter++;
                     }
                     else{
-                        System.out.println("NEW");
+                        content.setContent(xmlStreamReader.getText());
+                        contentService.save(content);
+                        index++;
+                        log.info("New Content added: " + xmlStreamReader.getText());
                     }
+
                 } else if (xmlStreamReader.isEndElement()) {
                     if(elementService.isEmptyNextIndex(index)){
-                        System.out.println("Added second el");
                         element.setSecond_el(xmlStreamReader.getLocalName());
                         element.setFirst_el("empty");
                         elementService.save(element);
                         index++;
+                        log.info("End Element added: " + xmlStreamReader.getLocalName());
                     }
-                    else if (elementService.getElement(iter).getSecond_el().equals(xmlStreamReader.getLocalName())) {
-                        System.out.println("SECOND EQUALS " + xmlStreamReader.getLocalName());
-                        iter++;
+                    else if (elementService.getElement(element_iter).getSecond_el().equals(xmlStreamReader.getLocalName())) {
+                        log.warn("End Element: " + xmlStreamReader.getLocalName() + " is already exists");
+                        element_iter++;
                     }
                     else{
-                        System.out.println("NEW");
+                        element.setSecond_el(xmlStreamReader.getLocalName());
+                        element.setFirst_el("empty");
+                        elementService.save(element);
+                        index++;
+                        log.info("New End Element added: " + xmlStreamReader.getLocalName());
                     }
                 }
                 else{
