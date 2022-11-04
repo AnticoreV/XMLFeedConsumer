@@ -26,7 +26,9 @@ public class StAXParser {
                 xmlStreamReader.next();
 
                 if(xmlStreamReader.isStartElement()){
+                    final int attributeCount = xmlStreamReader.getAttributeCount();
                     dataUtil.startElementProcessing(xmlStreamReader, log);
+                    dataUtil.attributeProcessing(attributeCount,xmlStreamReader,log);
                 }
                 else if (xmlStreamReader.hasText() && xmlStreamReader.getText().trim().length() > 1) {
                     dataUtil.contentProcessing(xmlStreamReader, log);
