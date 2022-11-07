@@ -15,16 +15,15 @@
     </Appenders>
     <Loggers>
 
-        <Logger name="XML.StAXParser" level="Debug" additivity="false">
+        <Logger name="xml.StAXParser" level="Debug" additivity="false">
             <AppenderRef ref="LogToFile"/>
         </Logger>
 
-<!--        <Logger name="XML.StAXParser" level="warn" additivity="false">-->
+<!--        <Logger name="xml.StAXParser" level="warn" additivity="false">-->
 <!--            <AppenderRef ref="LogToConsole"/>-->
 <!--        </Logger>-->
 
         <Root level="Debug">
-            <AppenderRef ref="LogToFile"/>
             <AppenderRef ref="LogToConsole"/>
         </Root>
 
